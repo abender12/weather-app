@@ -30,6 +30,20 @@ var cityHistoryList = function(cityName) {
     $("#search-input").val("");
 
 };
+// Cities previously searched show up underneath the search bar.
+var loadSearchHistory = function() {
+    var savedSearchHistory = localStorage.getItem("savedSearches");
+
+    if (!savedSearchHistory) {
+        return false;
+    }
+
+    savedSearchHistory = JSON.parse(savedSearchHistory);
+
+    for (var i = 0; i < savedSearchHistory.length; i++) {
+        searchHistoryList(savedSearchHistory[i]);
+    }
+};
     // The current forecast is displayed with
         // date
         // city name
