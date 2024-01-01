@@ -1,117 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Icons -->
-    <link 
-    rel="stylesheet" 
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
-    <link rel="stylesheet" href="./style.css">
-    <title>Weather Dashboard</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Weather Dashboard</title>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="Assets/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+    </head>
 
-<body class="body">
-    <header class="header">
-        <div class="h1-container d-flex translate-middle bg-dark justify-content-center">
-            <h1 class="h1 text-light">Weather Dashboard</h1>
-        </div>
-    </header>
-
-    <main class="main">
+    <body>
         <div class="container-fluid">
-            <div class="row page-content">
-                <!-- Aside -->
-                <div class="col-sm-4 bg-light p-0">
-                    <!-- Search Bar -->
-                    <div class="form-container">
-                        <form id="search-form">
-                            <div class="row m-0">
-                                <label for="search-input" class="search-label m-0 text-dark">Search for a City:</label>
+            <div class="row navbar navbar-dark bg-dark">
+                <div class="col-12 text-center">
+                    <h1 class="navbar-brand pb-0 px-0">Weather Dashboard</h1>
+                </div>
+            </div>
+            <div class="row content-row">
+                <div class="col-12 col-md-3 bg-light pt-3">
+                    <h5>Search for a city:</h5>
+                    <form>
+                        <div class="form-group input-group">
+                            <input type="text" class="form-control" id="search-city" placeholder="Enter city here">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="button" id="search-city-button">
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </div>
-                            <!-- Input and Button-->
-                            <div class="row m-0">
-                                <div class="col-sm-8 p-0 my-auto">
-                                    <input type="text" id="search-input" name="search-input" class="search-input rounded">
-                                </div>
-                                <div class="col-sm-4 p-0">
-                                    <button type="submit" class="btn bg-primary rounded search-button">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Search Historu -->
-                    <div id="search-history-container" class="row m-0 search-history-container">
-  
+                        </div>
+                    </form>
+                    <!-- Seach History -->
+                    <div class="card">
+                        <ul class="list-group list-group-flush" id="search-history-list"><li class="list-group-item city-btn" data-value="chicago">chicago</li></ul>
+                        <button id="clear-history" class="btn btn-sm btn-secondary">Clear History</button>
                     </div>
                 </div>
+                <div id="weather-content" class="col-12 col-md-9">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="city-info border rounded my-3 px-3 py-3">
+                                <h2 id="current-city">Chicago<small class="text-muted" id="current-date">(12/31/2023)</small><img src="https://openweathermap.org/img/w/13n.png" alt="Snow"></h2>
     
-                <!-- Main -->
-                <div class="col-sm-8 p-0">
-                    <!-- Current Weather -->
-                    <div id="current-weather-container" class="row d-block">
-                        <!-- Curr Weather Title -->
-                        <div class="current-title-container">
-                            <h2 id="current-title" class="current-title d-inline"></h2>
-                            <img id="current-weather-icon" class="d-inline" src="" alt="">
-                        </div>
-                        <!-- Curr Weather Temp -->
-                        <p class="current-temperature" id="current-temperature"></p>
-                        <!-- Curr Weather Humidity -->
-                        <p class="current-humidity" id="current-humidity"></p>
-                        <!-- Curr Weather Wind Speed -->
-                        <p class="current-wind-speed" id="current-wind-speed"></p>
-                    </div>
-                    <!-- 5 day forecast -->
-                    <div class="row future-forecast-container d-block">
-                        <!-- 5 day Title-->
-                        <h2 class="future-forecast-title" id="future-forecast-title"></h2>
-                        <div id="forecasts-cards-container" class="forecasts-cards-container d-flex justify-content-between">
-                            <!-- 5 Day Card -->
-                            <div class="future-card bg-primary rounded">
-                                <p class="future-date" id="future-date-1"></p>
-                                <img id="future-icon-1" src="" alt="">
-                                <p class="future-temp" id="future-temp-1"></p>
-                                <p class="future-humidity" id="future-humidity-1"></p>
-                            </div>
-                            <div class="future-card bg-primary rounded">
-                                <p class="future-date" id="future-date-2"></p>
-                                <img id="future-icon-2" src="" alt="">
-                                <p class="future-temp" id="future-temp-2"></p>
-                                <p class="future-humidity" id="future-humidity-2"></p>
-                            </div>
-                            <div class="future-card bg-primary rounded">
-                                <p class="future-date" id="future-date-3"></p>
-                                <img id="future-icon-3" src="" alt="">
-                                <p class="future-temp" id="future-temp-3"></p>
-                                <p class="future-humidity" id="future-humidity-3"></p>
-                            </div>
-                            <div class="future-card bg-primary rounded">
-                                <p class="future-date" id="future-date-4"></p>
-                                <img id="future-icon-4" src="" alt="">
-                                <p class="future-temp" id="future-temp-4"></p>
-                                <p class="future-humidity" id="future-humidity-4"></p>
-                            </div>
-                            <div class="future-card bg-primary rounded">
-                                <p class="future-date" id="future-date-5"></p>
-                                <img id="future-icon-5" src="" alt="">
-                                <p class="future-temp" id="future-temp-5"></p>
-                                <p class="future-humidity" id="future-humidity-5"></p>
+                                <p class="mb-0">Temperature: <span id="current-temp">32.65°F</span></p>
+                                <p class="mb-0">Humidity: <span id="current-humidity">86%</span></p>
+                                <p class="mb-0">Wind Speed: <span id="current-wind-speed">14.97MPH</span></p>
+                                <p>UV index: <span id="uv-index">1.02</span></p>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>5-Day Forecast</h3>
+                            
+                        </div>
+                    </div>
+                    <div id="five-day-forecast" class="row"><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/01/2024</h5><img src="https://openweathermap.org/img/w/13n.png" alt="Snow"><p class="card-text mb-0">Temp: 32.32°F</p><p class="card-text mb-0">Humidity: 83%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/02/2024</h5><img src="https://openweathermap.org/img/w/01n.png" alt="Clear"><p class="card-text mb-0">Temp: 31.01°F</p><p class="card-text mb-0">Humidity: 64%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/03/2024</h5><img src="https://openweathermap.org/img/w/03n.png" alt="Clouds"><p class="card-text mb-0">Temp: 32.74°F</p><p class="card-text mb-0">Humidity: 80%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/04/2024</h5><img src="https://openweathermap.org/img/w/13n.png" alt="Snow"><p class="card-text mb-0">Temp: 31.96°F</p><p class="card-text mb-0">Humidity: 73%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/05/2024</h5><img src="https://openweathermap.org/img/w/04n.png" alt="Clouds"><p class="card-text mb-0">Temp: 30.43°F</p><p class="card-text mb-0">Humidity: 55%</p></div></div></div></div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./script.js"></script>
-</body>
+        <script src="Assets/script.js"></script>
+    
+    </body>
 </html>
