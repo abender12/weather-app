@@ -9,12 +9,13 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="Assets/style.css">
+        <link rel="stylesheet" href="./style.css">
         <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     </head>
 
     <body>
         <div class="container-fluid">
+            <!-- Search Bar -->
             <div class="row navbar navbar-dark bg-dark">
                 <div class="col-12 text-center">
                     <h1 class="navbar-brand pb-0 px-0">Weather Dashboard</h1>
@@ -39,6 +40,7 @@
                         <button id="clear-history" class="btn btn-sm btn-secondary">Clear History</button>
                     </div>
                 </div>
+                <!-- Current Weather -->
                 <div id="weather-content" class="col-12 col-md-9">
                     <div class="row">
                         <div class="col-12">
@@ -58,11 +60,12 @@
                             
                         </div>
                     </div>
+                    <!-- Five Day Forecast -->
                     <div id="five-day-forecast" class="row"><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/01/2024</h5><img src="https://openweathermap.org/img/w/13n.png" alt="Snow"><p class="card-text mb-0">Temp: 32.32°F</p><p class="card-text mb-0">Humidity: 83%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/02/2024</h5><img src="https://openweathermap.org/img/w/01n.png" alt="Clear"><p class="card-text mb-0">Temp: 31.01°F</p><p class="card-text mb-0">Humidity: 64%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/03/2024</h5><img src="https://openweathermap.org/img/w/03n.png" alt="Clouds"><p class="card-text mb-0">Temp: 32.74°F</p><p class="card-text mb-0">Humidity: 80%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/04/2024</h5><img src="https://openweathermap.org/img/w/13n.png" alt="Snow"><p class="card-text mb-0">Temp: 31.96°F</p><p class="card-text mb-0">Humidity: 73%</p></div></div></div><div class="col-12 col-md-6 col-lg forecast-day mb-3"><div class="card"><div class="card-body"><h5 class="card-title">01/05/2024</h5><img src="https://openweathermap.org/img/w/04n.png" alt="Clouds"><p class="card-text mb-0">Temp: 30.43°F</p><p class="card-text mb-0">Humidity: 55%</p></div></div></div></div>
                 </div>
             </div>
         </div>
-        <script src="Assets/script.js"></script>
+        <script src="./script.js"></script>
     
     </body>
 </html>
